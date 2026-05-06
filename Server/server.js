@@ -1,3 +1,6 @@
+const db = require('./db');
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
@@ -26,6 +29,14 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/offers', offersRoutes);
 
 
+app.get('/test-db', async (req, res) => {
+  try {
+    const [rows] = await db.query('SHOW TABLES');
+    res.json({ success: true, tables: rows });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
 
 // const PORT = process.env.PORT || 3000;
 // const DB_HOST = process.env.DB_HOST || 3000;

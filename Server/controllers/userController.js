@@ -48,52 +48,6 @@ exports.login = async (req, res) => {
   }
 };
 
-// Add user
-// exports.addUser = async (req, res) => {
-//   const { name, email, mobile, password } = req.body;
-//   const hashedPassword = await bcrypt.hash(password, 10);
-//   try {
-//     const [result] = await pool.query(
-//       'INSERT INTO users (name, mobile, email, password) VALUES (?, ?, ?, ?)',
-//       [name, mobile, email, hashedPassword]
-//     );
-
-//     res.status(201).json({
-//       id: result.insertId,
-//       name,
-//       mobile,
-//       email,
-//     });
-
-//   } catch (err) {
-//     res.status(400).json({
-//       error: err.message,
-//     });
-//   }
-// };
-
-// exports.addUser = async (req, res) => {
-//   try {
-//     const { name, email, mobile, password } = req.body;
-//     const hashedPassword = await bcrypt.hash(password, 10);
-//     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
-//     await pool.query(
-//       `INSERT INTO users (name, email, mobile, password, otp, otp_expiry)
-//        VALUES (?, ?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL 5 MINUTE))`,
-//       [name, email, mobile, hashedPassword, otp]
-//     );
-
-//     await sendOTP(email, otp);
-
-//     res.json({ message: 'OTP sent', email });
-
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: 'Register failed' });
-//   }
-// };
-
 exports.addUser = async (req, res) => {
   try {
     const { name, email, mobile, password } = req.body;

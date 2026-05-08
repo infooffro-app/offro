@@ -19,15 +19,29 @@ const nodemailer = require('nodemailer');
 //   },
 // });
 
+// const transporter = nodemailer.createTransport({
+//   host: 'smtp.gmail.com',
+//   port: 587,
+//   secure: false,
+//   requireTLS: true,
+//   auth: {
+//     user: 'maskdecoration@gmail.com',
+//     pass: 'cdzsfcifbvxyjzjq',
+//   },
+// });
+
+
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
   secure: false,
   requireTLS: true,
+  family: 4,
   auth: {
     user: 'maskdecoration@gmail.com',
     pass: 'cdzsfcifbvxyjzjq',
   },
+  connectionTimeout: 10000,
 });
 
 exports.sendOTP = async (email, otp) => {

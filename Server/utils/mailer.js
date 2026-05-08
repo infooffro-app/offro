@@ -9,10 +9,21 @@ const nodemailer = require('nodemailer');
 //   },
 // });
 
+// const transporter = nodemailer.createTransport({
+//   host: 'smtp.gmail.com',
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: 'maskdecoration@gmail.com',
+//     pass: 'cdzsfcifbvxyjzjq',
+//   },
+// });
+
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
+  port: 587,
+  secure: false,
+  requireTLS: true,
   auth: {
     user: 'maskdecoration@gmail.com',
     pass: 'cdzsfcifbvxyjzjq',

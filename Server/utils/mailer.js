@@ -1,11 +1,21 @@
 
 const nodemailer = require('nodemailer');
 
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'maskdecoration@gmail.com',
+//     pass: 'cdzs fcif bvxy jzjq', // NOT normal password
+//   },
+// });
+
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: 'maskdecoration@gmail.com',
-    pass: 'cdzs fcif bvxy jzjq', // NOT normal password
+    pass: 'cdzsfcifbvxyjzjq',
   },
 });
 

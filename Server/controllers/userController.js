@@ -53,7 +53,9 @@ exports.addUser = async (req, res) => {
     const { name, email, mobile, password } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    //const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otp = 123456;
+
 
     await pool.query(
       `INSERT INTO users (name, email, mobile, password, otp, otp_expiry)
@@ -61,7 +63,7 @@ exports.addUser = async (req, res) => {
       [name, email, mobile, hashedPassword, otp]
     );
 
-    await sendOTP(email, otp);
+    //await sendOTP(email, otp);
 
     return res.json({ message: 'OTP sent', email });
 

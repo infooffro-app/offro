@@ -1,4 +1,3 @@
-// screens/auth/RegisterScreen.js - Jobsly Style
 import { useRouter } from 'expo-router';
 import React, { useRef, useState } from 'react';
 import {
@@ -13,20 +12,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
+import { AXIS_COLORS } from '../../constants/colors'
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
-
-const AXIS_COLORS = {
-  primary: '#003DA5',
-  secondary: '#4A90E2',
-  gradient: '#1F3A7D',
-  lightBg: '#E8F1F8',
-  text: '#1A1A1A',
-  white: '#FFFFFF',
-  border: '#D0E0F0',
-  success: '#00A86B',
-  error: '#E74C3C',
-};
 
 export default function RegisterScreen() {
   const router = useRouter();
@@ -73,71 +60,37 @@ export default function RegisterScreen() {
     return true;
   };
 
-  // const handleRegister = async () => {
-  //   if (!validateForm()) return;
-
-  //   setLoading(true);
-  //   try {
-  //     const response = await fetch(`${API_URL}/api/user/register`, {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         name: formData.name,
-  //         email: formData.email,
-  //         mobile: formData.phone,
-  //         password: formData.password,
-  //       }),
-  //     });
-
-  //     const data = await response.json();
-  //     console.log('testing',data);
-  //     if (response.ok) {
-  //      Alert.alert('Success', 'Account created! Verify OTP');
-  //       router.push({
-  //         pathname: '/otp',
-  //         params: {
-  //           email: formData.email,
-  //         },
-  //       });
-  //     } else {
-  //       Alert.alert('Error', data.error || 'Registration failed');
-  //     }
-  //   } catch (error) {
-  //     Alert.alert('Error', 'Could not connect to server');
-  //   }
-  //   setLoading(false);
-  // };
-
   const handleRegister = async () => {
-    if (!validateForm()) return;
+      if (!validateForm()) return;
 
-    setLoading(true);
-  try {
-    const res = await fetch(`${API_URL}/api/user/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        mobile: formData.phone,
-        password: formData.password,
-      }),
-    });
-
-    const data = await res.json();
-    setLoading(false);
-    if (res.ok) {
-      router.push({
-        pathname: '/otp',
-        params: { email: formData.email },
+      setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/api/user/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          mobile: formData.phone,
+          password: formData.password,
+        }),
       });
-    } else {
-      Alert.alert(data.error);
+
+      const data = await res.json();
+      setLoading(false);
+      if (res.ok) {
+        router.push({
+          pathname: '/preLogin/otp',
+          params: { email: formData.email },
+        });
+      } else {
+        Alert.alert(data.error);
+      }
+    } catch (err) {
+      Alert.alert('Error');
     }
-  } catch (err) {
-    Alert.alert('Error');
-  }
-};
+  };
+  
   const inputFields = [
     { label: 'Full Name', field: 'name', icon: '👤', placeholder: 'John Doe' },
     { label: 'Email', field: 'email', icon: '✉️', placeholder: 'john@example.com', keyboard: 'email-address' },
@@ -157,7 +110,7 @@ export default function RegisterScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
         {/* Gradient Header */}
         <View style={styles.gradientHeader}>
-          <TouchableOpacity style={styles.backButton} onPress={() => router.push('/login')}>
+          <TouchableOpacity style={styles.backButton} onPress={() => router.push('/preLogin/login')}>
             <Text style={styles.backText}>← Back</Text>
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Create Account</Text>
@@ -254,7 +207,7 @@ export default function RegisterScreen() {
           {/* Sign In Link */}
           <View style={styles.signInContainer}>
             <Text style={styles.signInText}>Already have an account? </Text>
-            <TouchableOpacity onPress={() => router.push('/login')}>
+            <TouchableOpacity onPress={() => router.push('/preLogin/login')}>
               <Text style={styles.signInLink}>Sign In</Text>
             </TouchableOpacity>
           </View>

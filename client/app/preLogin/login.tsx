@@ -1,4 +1,3 @@
-// screens/auth/LoginScreen.js - Jobsly Style with Axis Bank Colors
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -19,24 +18,12 @@ import {
 } from 'react-native';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
-
-// Axis Bank Colors
-const AXIS_COLORS = {
-  primary: '#003DA5',      // Primary Axis Blue
-  secondary: '#4A90E2',    // Secondary Blue
-  gradient: '#1F3A7D',     // Dark Blue
-  lightBg: '#E8F1F8',      // Light Blue Background
-  text: '#1A1A1A',         // Dark Text
-  white: '#FFFFFF',        // White
-  border: '#D0E0F0',       // Light Border
-  success: '#00A86B',      // Green
-  error: '#E74C3C',        // Red
-};
+import { AXIS_COLORS } from '../../constants/colors'
 
 export default function LoginScreen() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('rajtamil02@gmail.com');
+  const [password, setPassword] = useState('12345678');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [emailFocused, setEmailFocused] = useState(false);
@@ -73,7 +60,7 @@ export default function LoginScreen() {
         Alert.alert('Success', 'Login successful!');
 
         // ✅ Use replace (correct)
-        router.replace('/app');
+        router.replace('/app/dashboard/Dashboard');
       } else {
         Alert.alert('Login Failed', data.error || 'Invalid credentials');
       }
@@ -133,7 +120,7 @@ export default function LoginScreen() {
           <View style={styles.inputSection}>
             <View style={styles.passwordHeader}>
               <Text style={styles.inputLabel}>PASSWORD</Text>
-              <TouchableOpacity onPress={() => router.push('/ForgotPasswordScreen')} >
+              <TouchableOpacity onPress={() => router.push('/preLogin/ForgotPasswordScreen')} >
                 <Text style={styles.forgotLink}>Forgot?</Text>
               </TouchableOpacity>
             </View>
@@ -215,7 +202,7 @@ export default function LoginScreen() {
           {/* Sign Up Link */}
           <View style={styles.signUpContainer}>
             <Text style={styles.signUpText}>Don't have an account? </Text>
-            <TouchableOpacity onPress={() => router.push('/register')}>
+            <TouchableOpacity onPress={() => router.push('/preLogin/register')}>
               <Text style={styles.signUpLink}>Sign Up</Text>
             </TouchableOpacity>
           </View>

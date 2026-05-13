@@ -12,19 +12,9 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter, useFocusEffect } from 'expo-router';
-
+import { AXIS_COLORS } from '../../../constants/colors'
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
-const AXIS_COLORS = {
-  primary: '#003DA5',
-  secondary: '#4A90E2',
-  lightBg: '#F0F4FB',
-  cardBg: '#F4F6FB',
-  text: '#1A1A1A',
-  white: '#FFFFFF',
-  border: '#D8E6F5',
-  muted: '#8A9BB0',
-};
 
 export default function MyShopsScreen() {
   const router = useRouter();
@@ -90,7 +80,7 @@ export default function MyShopsScreen() {
       style={styles.shopCard}
       onPress={() => {
         router.push({
-          pathname: '/app/ShopDetailsScreen',
+          pathname: '/app/shops/ShopDetailsScreen',
           params: { shopId: item.id },
         });
       }}
@@ -141,31 +131,7 @@ export default function MyShopsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
-      {/* <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => router.push('/app/Dashboard')}
-        >
-          <View style={styles.backRow}>
-            <Text style={styles.backArrow}>←</Text>
-            <Text style={styles.backText}>Dashboard</Text>
-          </View>
-        </TouchableOpacity>
-
-        <View style={styles.headerContent}>
-          <View style={styles.headerIconWrap}>
-            <Text style={styles.headerIcon}>🏪</Text>
-          </View>
-          <View>
-            <Text style={styles.headerTitle}>My Shops</Text>
-            <Text style={styles.headerSubtitle}>
-              {shops.length} {shops.length === 1 ? 'shop' : 'shops'}
-            </Text>
-          </View>
-        </View>
-      </View> */}
-
+      
        {/* ── Header ── */}
         <View style={styles.header}>
             <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
@@ -199,7 +165,7 @@ export default function MyShopsScreen() {
           <Text style={styles.emptyText}>Create your first shop to get started</Text>
           <TouchableOpacity
             style={styles.createButton}
-            onPress={() => router.push('/app/AddShop')}
+            onPress={() => router.push('/app/shops/AddShop')}
           >
             <Text style={styles.createButtonText}>Create First Shop</Text>
           </TouchableOpacity>
@@ -220,7 +186,7 @@ export default function MyShopsScreen() {
           {/* Add New Shop Button */}
           <TouchableOpacity
             style={styles.addButton}
-            onPress={() => router.push('/app/AddShop')}
+            onPress={() => router.push('/app/shops/AddShop')}
           >
             <Text style={styles.addButtonIcon}>➕</Text>
             <Text style={styles.addButtonText}>Add Another Shop</Text>

@@ -7,16 +7,7 @@ import {
 import { useRouter } from 'expo-router';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
-
-const AXIS_COLORS = {
-  primary: '#003DA5',
-  lightBg: '#F0F4FB',
-  cardBg: '#F4F6FB',
-  text: '#1A1A1A',
-  white: '#FFFFFF',
-  border: '#D8E6F5',
-  muted: '#8A9BB0',
-};
+import { AXIS_COLORS } from '../../constants/colors'
 
 const STEPS = { EMAIL: 1, OTP: 2, RESET: 3 };
 
@@ -82,7 +73,7 @@ export default function ForgotPasswordScreen() {
       });
       const data = await res.json();
       if (res.ok) {
-        Alert.alert('Success', 'Password reset! Please login.', [{ text: 'Login', onPress: () => router.push('/login') }]);
+        Alert.alert('Success', 'Password reset! Please login.', [{ text: 'Login', onPress: () => router.push('/preLogin/login') }]);
       } else {
         Alert.alert('Error', data.message || 'Reset failed');
       }
@@ -218,7 +209,7 @@ export default function ForgotPasswordScreen() {
                 <TouchableOpacity style={[styles.submitBtn, loading && { opacity: 0.6 }]} onPress={handleSendOtp} disabled={loading}>
                   {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.submitBtnText}>Send Reset Code</Text>}
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.bottomLink} onPress={() => router.push('/login')}>
+                <TouchableOpacity style={styles.bottomLink} onPress={() => router.push('/preLogin/login')}>
                   <Text style={styles.bottomLinkText}>Back to Login</Text>
                 </TouchableOpacity>
               </View>

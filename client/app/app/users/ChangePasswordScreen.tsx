@@ -6,22 +6,9 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
-
+import { AXIS_COLORS } from '../../../constants/colors'
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
-const AXIS_COLORS = {
-  primary: '#003DA5',
-  secondary: '#4A90E2',
-  lightBg: '#F0F4FB',
-  cardBg: '#F4F6FB',
-  text: '#1A1A1A',
-  white: '#FFFFFF',
-  border: '#D0E0F0',
-  muted: '#8A9BB0',
-};
-
-// ✅ FIXED: Field component is OUTSIDE ChangePasswordScreen
-// If it's inside, every keystroke re-renders parent → Field remounts → keyboard closes
 const Field = ({ label, value, onChangeText, placeholder, secureTextEntry, onToggle, showPassword }) => (
   <View style={styles.inputSection}>
     <Text style={styles.label}>{label}</Text>
@@ -47,35 +34,35 @@ const Field = ({ label, value, onChangeText, placeholder, secureTextEntry, onTog
 export default function ChangePasswordScreen() {
   const router = useRouter();
 
-  const [current,  setCurrent]  = useState('');
-  const [newPwd,   setNewPwd]   = useState('');
-  const [confirm,  setConfirm]  = useState('');
+  const [current, setCurrent] = useState('');
+  const [newPwd, setNewPwd] = useState('');
+  const [confirm, setConfirm] = useState('');
   const [showCurrent, setShowCurrent] = useState(false);
-  const [showNew,     setShowNew]     = useState(false);
+  const [showNew, setShowNew] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [loading,  setLoading]  = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Password strength
   const getStrength = (pwd) => {
     if (!pwd) return { level: 0, label: '', color: AXIS_COLORS.border };
     let s = 0;
-    if (pwd.length >= 8)          s++;
-    if (/[A-Z]/.test(pwd))        s++;
-    if (/[0-9]/.test(pwd))        s++;
+    if (pwd.length >= 8) s++;
+    if (/[A-Z]/.test(pwd)) s++;
+    if (/[0-9]/.test(pwd)) s++;
     if (/[^A-Za-z0-9]/.test(pwd)) s++;
-    if (s <= 1) return { level: 1, label: 'Weak',   color: '#EF4444' };
-    if (s === 2) return { level: 2, label: 'Fair',   color: '#F59E0B' };
-    if (s === 3) return { level: 3, label: 'Good',   color: '#3B82F6' };
-    return              { level: 4, label: 'Strong', color: '#22C55E' };
+    if (s <= 1) return { level: 1, label: 'Weak', color: '#EF4444' };
+    if (s === 2) return { level: 2, label: 'Fair', color: '#F59E0B' };
+    if (s === 3) return { level: 3, label: 'Good', color: '#3B82F6' };
+    return { level: 4, label: 'Strong', color: '#22C55E' };
   };
 
   const strength = getStrength(newPwd);
 
   const validate = () => {
-    if (!current)             { Alert.alert('Required', 'Enter current password');              return false; }
-    if (newPwd.length < 6)    { Alert.alert('Required', 'New password min 6 characters');       return false; }
-    if (newPwd !== confirm)   { Alert.alert('Mismatch', 'Passwords do not match');              return false; }
-    if (current === newPwd)   { Alert.alert('Error',    'New password must differ from current'); return false; }
+    if (!current) { Alert.alert('Required', 'Enter current password'); return false; }
+    if (newPwd.length < 6) { Alert.alert('Required', 'New password min 6 characters'); return false; }
+    if (newPwd !== confirm) { Alert.alert('Mismatch', 'Passwords do not match'); return false; }
+    if (current === newPwd) { Alert.alert('Error', 'New password must differ from current'); return false; }
     return true;
   };
 
@@ -118,23 +105,33 @@ export default function ChangePasswordScreen() {
       >
 
         {/* ── Header ── */}
+
         <View style={styles.header}>
-          <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => router.back()}
+          >
             <View style={styles.backRow}>
               <Text style={styles.backArrow}>←</Text>
-              <Text style={styles.backText}>Profile</Text>
+              <Text style={styles.backText}>Dashboard</Text>
             </View>
           </TouchableOpacity>
+
           <View style={styles.headerContent}>
             <View style={styles.headerIconWrap}>
               <Text style={styles.headerIcon}>🔐</Text>
             </View>
             <View>
-              <Text style={styles.headerTitle}>Change Password</Text>
-              <Text style={styles.headerSubtitle}>Keep your account secure</Text>
+              <Text style={styles.headerTitle}>
+                Change Password
+              </Text>
+              <Text style={styles.headerSubtitle}>
+                Keep your account secure
+              </Text>
             </View>
           </View>
         </View>
+
 
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -232,7 +229,7 @@ export default function ChangePasswordScreen() {
             {/* Forgot Link */}
             <TouchableOpacity
               style={styles.forgotLink}
-              onPress={() => router.push('/ForgotPassword')}
+              onPress={() => router.push('/preLogin/ForgotPasswordScreen')}
             >
               <Text style={styles.forgotLinkText}>Forgot current password?</Text>
             </TouchableOpacity>
@@ -250,28 +247,59 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: AXIS_COLORS.white },
 
   // ── Header ──
-  header: {
-    backgroundColor: AXIS_COLORS.white,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: AXIS_COLORS.border,
+ header: {
+    backgroundColor: AXIS_COLORS.primary,
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    paddingBottom: 30,
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
   },
-  backButton:  { marginBottom: 12 },
-  backRow:     { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  backArrow:   { fontSize: 20, color: AXIS_COLORS.primary, fontWeight: '800' },
-  backText:    { fontSize: 14, fontWeight: '700', color: AXIS_COLORS.primary },
-  headerContent: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  backButton: {
+    marginBottom: 16,
+  },
+  backRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  backArrow: {
+    fontSize: 20,
+    color: AXIS_COLORS.white,
+    fontWeight: '800',
+  },
+  backText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: AXIS_COLORS.white,
+  },
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
   headerIconWrap: {
-    width: 48, height: 48, borderRadius: 12,
-    backgroundColor: AXIS_COLORS.lightBg,
-    justifyContent: 'center', alignItems: 'center',
-    borderWidth: 2, borderColor: AXIS_COLORS.border,
+    width: 48,
+    height: 48,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  headerIcon:     { fontSize: 24 },
-  headerTitle:    { fontSize: 20, fontWeight: '800', color: AXIS_COLORS.text },
-  headerSubtitle: { fontSize: 12, color: AXIS_COLORS.muted, marginTop: 2, fontWeight: '500' },
-
+  headerIcon: {
+    fontSize: 24,
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: AXIS_COLORS.white,
+  },
+  headerSubtitle: {
+    fontSize: 12,
+    color: 'rgba(255,255,255,0.8)',
+    marginTop: 2,
+    fontWeight: '500',
+  },
   scroll: { padding: 16 },
 
   // ── Info Box ──
@@ -302,17 +330,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12, height: 50,
   },
   fieldIcon: { fontSize: 16, marginRight: 8 },
-  input:     { flex: 1, fontSize: 14, color: AXIS_COLORS.text, fontWeight: '500' },
-  eyeBtn:    { padding: 6 },
-  eyeIcon:   { fontSize: 16 },
+  input: { flex: 1, fontSize: 14, color: AXIS_COLORS.text, fontWeight: '500' },
+  eyeBtn: { padding: 6 },
+  eyeIcon: { fontSize: 16 },
 
   sectionDivider: { height: 1, backgroundColor: AXIS_COLORS.border, marginVertical: 4 },
 
   // ── Strength ──
-  strengthRow:  { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: -8, marginBottom: 16 },
+  strengthRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: -8, marginBottom: 16 },
   strengthBars: { flexDirection: 'row', gap: 4, flex: 1 },
-  strengthBar:  { flex: 1, height: 4, borderRadius: 2 },
-  strengthLabel:{ fontSize: 11, fontWeight: '700', minWidth: 42, textAlign: 'right' },
+  strengthBar: { flex: 1, height: 4, borderRadius: 2 },
+  strengthLabel: { fontSize: 11, fontWeight: '700', minWidth: 42, textAlign: 'right' },
 
   // ── Match ──
   matchText: { fontSize: 12, fontWeight: '600', marginTop: -8, marginBottom: 12, marginLeft: 2 },
@@ -329,6 +357,6 @@ const styles = StyleSheet.create({
   submitBtnText: { color: AXIS_COLORS.white, fontSize: 15, fontWeight: '700' },
 
   // ── Forgot ──
-  forgotLink:     { alignItems: 'center', marginTop: 14, paddingVertical: 4 },
+  forgotLink: { alignItems: 'center', marginTop: 14, paddingVertical: 4 },
   forgotLinkText: { fontSize: 13, color: AXIS_COLORS.primary, fontWeight: '700', textDecorationLine: 'underline' },
 });

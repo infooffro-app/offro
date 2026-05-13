@@ -7,17 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
-
-const AXIS_COLORS = {
-  primary: '#003DA5',
-  secondary: '#4A90E2',
-  lightBg: '#F0F4FB',
-  cardBg: '#F4F6FB',
-  text: '#1A1A1A',
-  white: '#FFFFFF',
-  border: '#D8E6F5',
-  muted: '#8A9BB0',
-};
+import { AXIS_COLORS } from '../../../constants/colors'
 
 export default function ViewProfileScreen() {
   const router = useRouter();
@@ -130,7 +120,7 @@ export default function ViewProfileScreen() {
         <View style={styles.actionsCard}>
           <TouchableOpacity
             style={styles.actionRow}
-            onPress={() => router.push('/app/ChangePassword')}
+            onPress={() => router.push('/app/users/ChangePasswordScreen')}
           >
             <View style={styles.actionLeft}>
               <View style={styles.actionIconBox}>
@@ -145,7 +135,7 @@ export default function ViewProfileScreen() {
 
           <TouchableOpacity
             style={styles.actionRow}
-            onPress={() => router.push('/app/MyShopsScreen')}
+            onPress={() => router.push('/app/shops/MyShopsScreen')}
           >
             <View style={styles.actionLeft}>
               <View style={styles.actionIconBox}>
@@ -160,7 +150,7 @@ export default function ViewProfileScreen() {
 
           <TouchableOpacity
             style={styles.actionRow}
-            onPress={() => router.push('/app/MyOffer')}
+            onPress={() => router.push('/app/offers/MyOffer')}
           >
             <View style={styles.actionLeft}>
               <View style={styles.actionIconBox}>

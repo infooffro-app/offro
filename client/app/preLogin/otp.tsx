@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { AXIS_COLORS } from '../../constants/colors'
 
 export default function OTP() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function OTP() {
 
       if (res.ok) {
         Alert.alert('Success');
-        router.replace('/login'); // Dashboard
+        router.replace('/preLogin/login'); // Dashboard
       } else {
         Alert.alert(data.error);
       }

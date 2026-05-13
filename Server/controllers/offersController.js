@@ -1,7 +1,6 @@
 const pool = require('../db');
 
 
-
 // Add My Offer
 exports.addOffer = async (req, res) => {
   const {
@@ -17,7 +16,6 @@ exports.addOffer = async (req, res) => {
 
   const validFromFormatted = new Date(validFrom).toISOString().split('T')[0];
   const validUntilFormatted = new Date(validUntil).toISOString().split('T')[0];
-  console.log(req.body);
 
   if (!title || !validFrom || !validUntil) {
     return res.status(400).json({ error: "Required fields missing" });
@@ -252,114 +250,78 @@ exports.getShopDetails = async (req, res) => {
   }
 };
 
-
-// exports.getOfferDetails = async (req, res) => {
-//   try {
-//     const { offerId } = req.params;
-
-//     // Validate ID
-//     if (!offerId || isNaN(offerId)) {
-//       return res.status(400).json({ message: 'Invalid offer ID' });
-//     }
-
-//     const sql = `
-//       SELECT 
-//         o.id,
-//         o.user_id,
-//         o.shop_id,
-//         o.title,
-//         o.description,
-//         o.discount_percentage,
-//         o.discount_amount,
-//         o.coupon_code,
-//         o.valid_from,
-//         o.valid_until,
-//         o.created_at,
-//         s.shop_name,
-//         s.id as shop_id
-//       FROM offers o
-//       LEFT JOIN shops s ON o.shop_id = s.id
-//       WHERE o.id = ?
-//     `;
-
-//     const [rows] = await pool.query(sql, [offerId]);
-
-//     // Check if offer exists
-//     if (rows.length === 0) {
-//       return res.status(404).json({ message: 'Offer not found' });
-//     }
-
-//     const offer = rows[0];
-
-//     res.json({
-//       success: true,
-//       data: offer,
-//     });
-
-//   } catch (error) {
-//     console.error('GET OFFER DETAILS ERROR:', error);
-//     res.status(500).json({
-//       success: false,
-//       message: 'Failed to fetch offer details'
-//     });
-//   }
-// };
-
 exports.getOfferDetails = async (req, res) => {
   try {
     const { offerId } = req.params;
-    const userId = req.user?.id || null; // if using auth middleware
+    const userId = req.user?.id || null;
 
     if (!offerId || isNaN(offerId)) {
-      return res.status(400).json({ message: 'Invalid offer ID' });
+      return res.status(400).json({
+        message: 'Invalid offer ID'
+      });
     }
 
-    // 🔥 Insert click tracking
-    await pool.query(
-      `INSERT INTO offer_clicks (offer_id, user_id) VALUES (?, ?)`,
-      [offerId, userId]
-    );
-
-    // 🔥 Update total clicks
-    await pool.query(
-      `UPDATE offers SET total_clicks = total_clicks + 1 WHERE id = ?`,
-      [offerId]
-    );
-
-    // Get offer details
+    // Get offer first
     const [rows] = await pool.query(
       `SELECT 
-        o.id,
-        o.user_id,
-        o.shop_id,
-        o.title,
-        o.description,
-        o.discount_percentage,
-        o.discount_amount,
-        o.coupon_code,
-        o.valid_from,
-        o.valid_until,
-        o.created_at,
-        o.total_clicks,
-        s.shop_name
-      FROM offers o
-      LEFT JOIN shops s ON o.shop_id = s.id
-      WHERE o.id = ?`,
+          o.*,
+          s.shop_name
+       FROM offers o
+       LEFT JOIN shops s ON o.shop_id = s.id
+       WHERE o.id = ?`,
       [offerId]
     );
 
     if (rows.length === 0) {
-      return res.status(404).json({ message: 'Offer not found' });
+      return res.status(404).json({
+        message: 'Offer not found'
+      });
+    }
+
+    const offer = rows[0];
+
+    // ✅ Prevent owner self-click
+    if (userId && offer.user_id !== userId) {
+
+      // ✅ Check already clicked
+      const [existing] = await pool.query(
+        `SELECT id 
+         FROM offer_clicks 
+         WHERE offer_id = ? AND user_id = ?`,
+        [offerId, userId]
+      );
+
+      // ✅ Insert only first time
+      if (existing.length === 0) {
+
+        await pool.query(
+          `INSERT INTO offer_clicks 
+           (offer_id, user_id) 
+           VALUES (?, ?)`,
+          [offerId, userId]
+        );
+
+        // Increment unique customer count
+        await pool.query(
+          `UPDATE offers 
+           SET total_clicks = total_clicks + 1
+           WHERE id = ?`,
+          [offerId]
+        );
+      }
     }
 
     res.json({
       success: true,
-      data: rows[0],
+      data: offer,
     });
 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error fetching offer' });
+
+    res.status(500).json({
+      message: 'Error fetching offer'
+    });
   }
 };
 
@@ -408,8 +370,6 @@ exports.getOfferAnalytics = async (req, res) => {
       today_clicks: today[0].today_clicks,
       data: rows
     });
-
-    console.log('ddd', res.json);
 
   } catch (error) {
     console.error('OFFER ANALYTICS ERROR:', error);

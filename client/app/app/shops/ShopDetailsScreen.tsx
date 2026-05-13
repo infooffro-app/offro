@@ -13,17 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
-
-const AXIS_COLORS = {
-  primary: '#003DA5',
-  secondary: '#4A90E2',
-  lightBg: '#F0F4FB',
-  cardBg: '#F4F6FB',
-  text: '#1A1A1A',
-  white: '#FFFFFF',
-  border: '#D8E6F5',
-  muted: '#8A9BB0',
-};
+import { AXIS_COLORS } from '../../../constants/colors'
 
 export default function ShopDetailsScreen() {
   const router = useRouter();
@@ -74,7 +64,7 @@ export default function ShopDetailsScreen() {
 
   const handleEditShop = () => {
     router.push({
-      pathname: '/app/EditShopScreen',
+      pathname: '/app/shops/EditShopScreen',
       params: { 
         shopId: shop?.id,
         mode: 'edit',
@@ -115,7 +105,7 @@ export default function ShopDetailsScreen() {
       }
 
       Alert.alert('Success', 'Shop deleted successfully');
-      router.push('/app/MyShopsScreen');
+      router.push('/app/shops/MyShopsScreen');
     } catch (error) {
       console.error('Error deleting shop:', error);
       Alert.alert('Error', 'Failed to delete shop');
@@ -142,7 +132,7 @@ export default function ShopDetailsScreen() {
           <Text style={styles.emptyTitle}>Shop Not Found</Text>
           <TouchableOpacity
             style={styles.createButton}
-            onPress={() => router.push('/app/MyShopsScreen')}
+            onPress={() => router.push('/app/shops/MyShopsScreen')}
           >
             <Text style={styles.createButtonText}>Back to Shops</Text>
           </TouchableOpacity>

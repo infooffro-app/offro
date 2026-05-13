@@ -1,0 +1,19 @@
+cd D:\offro-app\client
+
+# Generate native folders fresh
+npx expo prebuild --clean
+
+# Then build
+
+cd android
+./gradlew assembleRelease
+
+
+
+
+
+
+#Simple fix — create local.properties file:
+D:\offro-app\client\android\local.properties
+
+sdk.dir=C:\\Users\\akastenraj.l\\AppData\\Local\\Android\\Sdk

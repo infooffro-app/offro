@@ -17,4 +17,5 @@ router.post('/forgot-password', ctrl.forgotPassword);
 router.post('/forgot-verify-otp',      ctrl.forgotVerifyOtp);
 router.post('/reset-password',  ctrl.resetPassword);
 
+
 module.exports = router;

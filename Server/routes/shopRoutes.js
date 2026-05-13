@@ -8,10 +8,7 @@ router.get('/districts/:stateId', auth, ctrl.getDistricts);
 router.get('/cities/:districtId', auth, ctrl.getCities);
 router.post('/addShops', auth, ctrl.addShop);
 router.get('/myShop', auth, ctrl.getMyShop);
-// router.post('/offers', auth, ctrl.addOffer);
-// router.put('/offers/:id', auth, ctrl.updateOffer);
 router.get('/categories', auth, ctrl.getCategories);
-// router.get('/myOffers', auth, ctrl.getMyOffers);
 
 router.get('/getShop/myShops', auth, ctrl.getMyShops);
 router.get('/getShop/:shopId', auth, ctrl.getShopById);

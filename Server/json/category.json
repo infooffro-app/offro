@@ -1,0 +1,17 @@
+[
+  { "id": 1, "name": "Food" },
+  { "id": 2, "name": "Hotel" },
+  { "id": 3, "name": "Salon" },
+  { "id": 4, "name": "Fashion" },
+  { "id": 5, "name": "Electronics" },
+  { "id": 6, "name": "Grocery" },
+  { "id": 7, "name": "Pharmacy" },
+  { "id": 8, "name": "Gym" },
+  { "id": 9, "name": "Cafe" },
+  { "id": 10, "name": "Beauty" },
+  { "id": 11, "name": "Mobile" },
+  { "id": 12, "name": "Furniture" },
+  { "id": 13, "name": "Auto" },
+  { "id": 14, "name": "Education" },
+  { "id": 15, "name": "Entertainment" }
+]

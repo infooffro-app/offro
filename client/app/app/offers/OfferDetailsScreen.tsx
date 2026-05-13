@@ -12,20 +12,8 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-
+import { AXIS_COLORS } from '../../../constants/colors'
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
-
-const AXIS_COLORS = {
-  primary: '#003DA5',
-  secondary: '#4A90E2',
-  lightBg: '#F0F4FB',
-  cardBg: '#F4F6FB',
-  text: '#1A1A1A',
-  white: '#FFFFFF',
-  border: '#D8E6F5',
-  muted: '#8A9BB0',
-};
-
 const OfferDetailsScreen = () => {
   const router = useRouter();
   const { offerId } = useLocalSearchParams();
@@ -65,7 +53,6 @@ const OfferDetailsScreen = () => {
       }
 
       const offerData = await offerRes.json();
-      console.log("offerData", offerData);
       setOffer(offerData.data);
 
       // Fetch shop details if shop_id exists
@@ -78,8 +65,6 @@ const OfferDetailsScreen = () => {
             'Content-Type': 'application/json',
           },
         });
-
-        console.log('asdasda',shopRes.ok);
 
         if (shopRes.ok) {
           const shopData = await shopRes.json();

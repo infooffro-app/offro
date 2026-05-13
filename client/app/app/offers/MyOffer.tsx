@@ -7,18 +7,8 @@ import {
     ScrollView, StyleSheet, Text, TextInput,
     TouchableOpacity, View,
 } from 'react-native';
-
+import { AXIS_COLORS } from '../../../constants/colors'
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
-
-const AXIS_COLORS = {
-    primary: '#003DA5',
-    lightBg: '#F0F4FB',
-    cardBg: '#F4F6FB',
-    text: '#1A1A1A',
-    white: '#FFFFFF',
-    border: '#D8E6F5',
-    muted: '#8A9BB0',
-};
 
 const ACCENT_COLORS = ['#003DA5', '#16A34A', '#D97706', '#DC2626', '#7C3AED', '#0891B2'];
 
@@ -51,7 +41,7 @@ export default function MyOffersScreen() {
             );
         }
         if (selectedShop) {
-            result = result.filter(o => o.category_id === selectedShop);
+            result = result.filter(o => o.shop_id  === selectedShop);
         }
         if (statusFilter === 'active') {
             result = result.filter(o => !isExpired(o.valid_until));
@@ -73,46 +63,46 @@ export default function MyOffersScreen() {
         } catch (e) { }
     };
     const loadOffers = async (pageNumber = 1, reset = false) => {
-    try {
-        if (reset) setLoading(true);
+        try {
+            if (reset) setLoading(true);
 
-        const token = await AsyncStorage.getItem('userToken');
-        const url = `${API_URL}/api/offers/myOffers?page=${pageNumber}&limit=10&sort=desc`;
+            const token = await AsyncStorage.getItem('userToken');
+            const url = `${API_URL}/api/offers/myOffers?page=${pageNumber}&limit=10&sort=desc`;
 
-        const res = await fetch(url, {
-            headers: { Authorization: `Bearer ${token}` }
-        });
+            const res = await fetch(url, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
 
-        const data = await res.json();
-        const dataArray = Array.isArray(data)
-            ? data
-            : data.offers || data.data || [];
+            const data = await res.json();
+            const dataArray = Array.isArray(data)
+                ? data
+                : data.offers || data.data || [];
 
-        let updatedOffers = [];
+            let updatedOffers = [];
 
-        if (reset) {
-            updatedOffers = dataArray;
-        } else {
-            // ✅ REMOVE DUPLICATES HERE
-            const existingIds = new Set(offers.map(o => o.id));
+            if (reset) {
+                updatedOffers = dataArray;
+            } else {
+                // ✅ REMOVE DUPLICATES HERE
+                const existingIds = new Set(offers.map(o => o.id));
 
-            const uniqueNew = dataArray.filter(o => !existingIds.has(o.id));
+                const uniqueNew = dataArray.filter(o => !existingIds.has(o.id));
 
-            updatedOffers = [...offers, ...uniqueNew];
+                updatedOffers = [...offers, ...uniqueNew];
+            }
+
+            setOffers(updatedOffers);
+            setHasMore(dataArray.length >= 10);
+            setPage(pageNumber);
+
+        } catch (err) {
+            console.log(err);
+            setOffers([]);
+        } finally {
+            setLoading(false);
+            setRefreshing(false);
         }
-
-        setOffers(updatedOffers);
-        setHasMore(dataArray.length >= 10);
-        setPage(pageNumber);
-
-    } catch (err) {
-        console.log(err);
-        setOffers([]);
-    } finally {
-        setLoading(false);
-        setRefreshing(false);
-    }
-};
+    };
     const onRefresh = () => {
         setRefreshing(true);
         setHasMore(true);
@@ -123,7 +113,18 @@ export default function MyOffersScreen() {
         if (!loading && hasMore) loadOffers(page + 1);
     };
 
-    const isExpired = (date) => new Date(date).toDateString() < new Date().toDateString();
+    const isExpired = (date) => {
+        if (!date) return false;
+
+        const offerDate = new Date(date);
+        const today = new Date();
+
+        // Remove time part
+        today.setHours(0, 0, 0, 0);
+        offerDate.setHours(0, 0, 0, 0);
+
+        return offerDate < today;
+    };
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -253,7 +254,7 @@ export default function MyOffersScreen() {
                         <TouchableOpacity
                             style={[styles.editBtn, { borderColor: '#16A34A' }]}
                             onPress={() => router.push({
-                                pathname: '/app/OfferGraph',
+                                pathname: '/app/offers/OfferGraph',
                                 params: { offerId: item.id }
                             })}
                         >
@@ -264,7 +265,7 @@ export default function MyOffersScreen() {
                             <TouchableOpacity
                                 style={[styles.editBtn, { borderColor: accent }]}
                                 onPress={() => router.push({
-                                    pathname: '/app/AddOffer',
+                                    pathname: '/app/offers/AddOffer',
                                     params: {
                                         editMode: 'true',
                                         offerId: String(item.id),

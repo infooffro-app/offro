@@ -1,0 +1,368 @@
+[
+  {
+    "district_id": 1,
+    "district": "Ariyalur",
+    "cities_towns_taluks": [
+      "Ariyalur", "Jayankondam", "Sendurai", "Andimadam", "T.Palur",
+      "Udayarpalayam", "Thirumanur", "Kilperungarai"
+    ]
+  },
+  {
+    "district_id": 2,
+    "district": "Chengalpattu",
+    "cities_towns_taluks": [
+      "Chengalpattu", "Tambaram", "Maraimalai Nagar", "Thiruporur",
+      "Tirukalukundram", "Cheyyur", "Maduranthakam", "Uthiramerur",
+      "Vandalur", "Pallavaram", "Chromepet"
+    ]
+  },
+  {
+    "district_id": 3,
+    "district": "Chennai",
+    "cities_towns_taluks": [
+      "Chennai", "Egmore", "Mylapore", "Perambur", "Ambattur",
+      "Sholinganallur", "Alandur", "Tondiarpet", "Royapuram",
+      "Adyar", "Anna Nagar", "T. Nagar", "Kodambakkam",
+      "Velachery", "Villivakkam", "Kolathur", "Maduravoyal"
+    ]
+  },
+  {
+    "district_id": 4,
+    "district": "Coimbatore",
+    "cities_towns_taluks": [
+      "Coimbatore North", "Coimbatore South", "Mettupalayam",
+      "Pollachi", "Annur", "Kinathukadavu", "Sulur", "Valparai",
+      "Tirupur (old)", "Perur", "Karamadai", "Madukkarai"
+    ]
+  },
+  {
+    "district_id": 5,
+    "district": "Cuddalore",
+    "cities_towns_taluks": [
+      "Cuddalore", "Chidambaram", "Kattumannarkoil", "Kurinjipadi",
+      "Panruti", "Virudhachalam", "Bhuvanagiri", "Mangalur",
+      "Neyveli", "Porto Novo", "Srimushnam"
+    ]
+  },
+  {
+    "district_id": 6,
+    "district": "Dharmapuri",
+    "cities_towns_taluks": [
+      "Dharmapuri", "Pennagaram", "Palakkodu", "Harur", "Palacode",
+      "Karimangalam", "Nallampalli", "Morappur", "Pappireddipatti",
+      "Marandahalli", "Hogenakkal"
+    ]
+  },
+  {
+    "district_id": 7,
+    "district": "Dindigul",
+    "cities_towns_taluks": [
+      "Dindigul", "Palani", "Natham", "Nilakottai", "Vedasandur",
+      "Athoor", "Oddanchatram", "Kodaikanal", "Batlagundu",
+      "Guziliamparai", "Chinnalapatti", "Reddiyarchatram"
+    ]
+  },
+  {
+    "district_id": 8,
+    "district": "Erode",
+    "cities_towns_taluks": [
+      "Erode", "Gobichettipalayam", "Bhavani", "Perundurai",
+      "Sathyamangalam", "Anthiyur", "Kodumudi", "Nambiyur",
+      "Modakurichi", "Kavindapadi", "Kangayam"
+    ]
+  },
+  {
+    "district_id": 9,
+    "district": "Kallakurichi",
+    "cities_towns_taluks": [
+      "Kallakurichi", "Chinnasalem", "Sankarapuram", "Ulundurpettai",
+      "Tirukoilur", "Rishivandiyam", "Kalvarayan Hills", "Valavanur"
+    ]
+  },
+  {
+    "district_id": 10,
+    "district": "Kanchipuram",
+    "cities_towns_taluks": [
+      "Kanchipuram", "Sriperumbudur", "Walajabad", "Uthiramerur",
+      "Kundrathur", "Cheyyar", "Kattankulathur", "Uchiyur"
+    ]
+  },
+  {
+    "district_id": 11,
+    "district": "Kanyakumari",
+    "cities_towns_taluks": [
+      "Nagercoil", "Thuckalay", "Vilavancode", "Killiyoor",
+      "Agastheeswaramtaluk", "Kalkulam", "Padmanabhapuram",
+      "Colachel", "Marthandam", "Kuzhithurai", "Eraniel"
+    ]
+  },
+  {
+    "district_id": 12,
+    "district": "Karur",
+    "cities_towns_taluks": [
+      "Karur", "Krishnarayapuram", "Kulithalai", "Manmangalam",
+      "Aravakurichi", "Pugalur", "Kadavur", "Thanthoni"
+    ]
+  },
+  {
+    "district_id": 13,
+    "district": "Krishnagiri",
+    "cities_towns_taluks": [
+      "Krishnagiri", "Hosur", "Bargur", "Pochampalli", "Veppanahalli",
+      "Shoolagiri", "Kaveripattinam", "Uthangarai", "Kelamangalam",
+      "Mathur", "Denkanikottai", "Thally", "Anchetty"
+    ]
+  },
+  {
+    "district_id": 14,
+    "district": "Madurai",
+    "cities_towns_taluks": [
+      "Madurai North", "Madurai South", "Melur", "Peraiyur",
+      "Tirumangalam", "Usilampatti", "Vadipatti", "Koodal Nagar",
+      "Sholavandan", "Thirparankundram", "Alanganallur", "Kallikudi"
+    ]
+  },
+  {
+    "district_id": 15,
+    "district": "Mayiladuthurai",
+    "cities_towns_taluks": [
+      "Mayiladuthurai", "Sirkali", "Tharangambadi", "Kuthalam",
+      "Sembanarkoil", "Kollidam", "Poompuhar"
+    ]
+  },
+  {
+    "district_id": 16,
+    "district": "Nagapattinam",
+    "cities_towns_taluks": [
+      "Nagapattinam", "Kilvelur", "Vedaranyam", "Thirukkuvalai",
+      "Thalainayar", "Sembanarkoil", "Kollidam", "Velankanni"
+    ]
+  },
+  {
+    "district_id": 17,
+    "district": "Namakkal",
+    "cities_towns_taluks": [
+      "Namakkal", "Rasipuram", "Tiruchengode", "Paramathi-Velur",
+      "Sendamangalam", "Kolli Hills", "Erumapatty", "Mohanur",
+      "Kumarapalayam", "Elachipalayam"
+    ]
+  },
+  {
+    "district_id": 18,
+    "district": "Nilgiris",
+    "cities_towns_taluks": [
+      "Udhagamandalam (Ooty)", "Coonoor", "Kotagiri", "Gudalur",
+      "Kundah", "Panthalur", "Yelland", "Wellington",
+      "Lovedale", "Avalanche"
+    ]
+  },
+  {
+    "district_id": 19,
+    "district": "Perambalur",
+    "cities_towns_taluks": [
+      "Perambalur", "Arumbavur", "Veppanthattai", "Kunnam",
+      "Alathur", "Kurumbalur", "Esanai"
+    ]
+  },
+  {
+    "district_id": 20,
+    "district": "Pudukkottai",
+    "cities_towns_taluks": [
+      "Pudukkottai", "Aranthangi", "Alangudi", "Tirumayam",
+      "Viralimalai", "Iluppur", "Gandarvakottai", "Kulathur",
+      "Manamelkudi", "Karambakudi", "Avudaiyarkoil"
+    ]
+  },
+  {
+    "district_id": 21,
+    "district": "Ramanathapuram",
+    "cities_towns_taluks": [
+      "Ramanathapuram", "Paramakudi", "Rameswaram", "Tiruvadanai",
+      "Mudukulathur", "Kamuthi", "Kadaladi", "Mandapam",
+      "Sayalgudi", "Thiruvochiyam"
+    ]
+  },
+  {
+    "district_id": 22,
+    "district": "Ranipet",
+    "cities_towns_taluks": [
+      "Ranipet", "Arcot", "Walajapet", "Arakkonam", "Nemili",
+      "Sholinghur", "Timiri", "Kaveripakkam", "Panapakkam"
+    ]
+  },
+  {
+    "district_id": 23,
+    "district": "Salem",
+    "cities_towns_taluks": [
+      "Salem", "Attur", "Mettur", "Omalur", "Sankari",
+      "Edappadi", "Gangavalli", "Valapady", "Yercaud",
+      "Thalaivasal", "Magudanchavadi", "Suramangalam", "Narasingapuram"
+    ]
+  },
+  {
+    "district_id": 24,
+    "district": "Sivagangai",
+    "cities_towns_taluks": [
+      "Sivagangai", "Devakottai", "Karaikudi", "Tiruppattur",
+      "Ilayankudi", "Kallal", "Manamadurai", "Sakkottai",
+      "Singampunari", "Thiruppuvanam"
+    ]
+  },
+  {
+    "district_id": 25,
+    "district": "Tenkasi",
+    "cities_towns_taluks": [
+      "Tenkasi", "Sankarankoil", "Kadayanallur", "Shenkottai",
+      "Alangulam", "Sivagiri", "Veerakeralampudur", "Courtallam",
+      "Puliyangudi", "Pavoorchatram"
+    ]
+  },
+  {
+    "district_id": 26,
+    "district": "Thanjavur",
+    "cities_towns_taluks": [
+      "Thanjavur", "Kumbakonam", "Papanasam", "Pattukkottai",
+      "Peravurani", "Thiruvidaimarudhur", "Orathanadu", "Thiruvaiyaru",
+      "Budalur", "Sethiyathope", "Tiruvonam"
+    ]
+  },
+  {
+    "district_id": 27,
+    "district": "Theni",
+    "cities_towns_taluks": [
+      "Theni", "Periyakulam", "Uthamapalayam", "Andipatti",
+      "Bodinayakanur", "Chinnamanur", "Cumbum", "Gudalur",
+      "Kambam", "Thevaram"
+    ]
+  },
+  {
+    "district_id": 28,
+    "district": "Thoothukudi",
+    "cities_towns_taluks": [
+      "Thoothukudi", "Tiruchendur", "Srivaikuntam", "Eral",
+      "Kovilpatti", "Ottapidaram", "Vilathikulam", "Kayalpattinam",
+      "Sathankulam", "Kadambur"
+    ]
+  },
+  {
+    "district_id": 29,
+    "district": "Tiruchirappalli",
+    "cities_towns_taluks": [
+      "Tiruchirappalli", "Lalgudi", "Manachanallur", "Musiri",
+      "Srirangam", "Thottiyam", "Tiruverumbur", "Manapparai",
+      "Thuraiyur", "Pullambadi", "Uppiliyapuram", "Andanallur"
+    ]
+  },
+  {
+    "district_id": 30,
+    "district": "Tirunelveli",
+    "cities_towns_taluks": [
+      "Tirunelveli", "Palayamkottai", "Ambasamudram", "Nanguneri",
+      "Cheranmahadevi", "Radhapuram", "Manur", "Valliyur",
+      "Pettai", "Seevalaperi", "Alangulam"
+    ]
+  },
+  {
+    "district_id": 31,
+    "district": "Tirupathur",
+    "cities_towns_taluks": [
+      "Tirupathur", "Ambur", "Vaniyambadi", "Natrampalli",
+      "Jolarpet", "Gudiyatham", "Alangayam", "Kandili"
+    ]
+  },
+  {
+    "district_id": 32,
+    "district": "Tiruppur",
+    "cities_towns_taluks": [
+      "Tiruppur", "Dharapuram", "Kangeyam", "Udumalaipettai",
+      "Palladam", "Avinashi", "Madathukulam", "Gudimangalam",
+      "Mulanur", "Kundadam", "Vellakovil"
+    ]
+  },
+  {
+    "district_id": 33,
+    "district": "Tiruvallur",
+    "cities_towns_taluks": [
+      "Tiruvallur", "Ponneri", "Gummidipoondi", "Poonamallee",
+      "Avadi", "Ambattur", "Sholavaram", "Minjur",
+      "Uthukottai", "Pallipattu", "Tiruttani", "Kadambattur"
+    ]
+  },
+  {
+    "district_id": 34,
+    "district": "Tiruvannamalai",
+    "cities_towns_taluks": [
+      "Tiruvannamalai", "Arani", "Chengam", "Polur",
+      "Kalasapakkam", "Vembakkam", "Thandrampet", "Cheyyar",
+      "Vandavasi", "Kilpennathur", "Jamunamarathur"
+    ]
+  },
+  {
+    "district_id": 35,
+    "district": "Tiruvarur",
+    "cities_towns_taluks": [
+      "Tiruvarur", "Nannilam", "Papanasam", "Koradacherry",
+      "Mannargudi", "Thiruthuraipoondi", "Needamangalam",
+      "Valangaiman", "Kudavasal", "Muthupettai"
+    ]
+  },
+  {
+    "district_id": 36,
+    "district": "Vellore",
+    "cities_towns_taluks": [
+      "Vellore", "Gudiyatham", "Katpadi", "Walajah",
+      "Anaicut", "Pernambut", "Kaniyambadi", "Virinchipuram",
+      "Sankaranpalayam"
+    ]
+  },
+  {
+    "district_id": 37,
+    "district": "Viluppuram",
+    "cities_towns_taluks": [
+      "Viluppuram", "Tindivanam", "Gingee", "Vanur",
+      "Vikravandi", "Thirunavalur", "Marakkanam", "Melmalaiyanur",
+      "Mugaiyur", "Koliyanur", "Kandamangalam"
+    ]
+  },
+  {
+    "district_id": 38,
+    "district": "Virudhunagar",
+    "cities_towns_taluks": [
+      "Virudhunagar", "Sivakasi", "Srivilliputhur", "Rajapalayam",
+      "Sattur", "Aruppukkottai", "Tiruchuli", "Vembakottai",
+      "Kariapatti", "Watrap", "Krishnankoil"
+    ]
+  },
+  {
+    "district_id": 39,
+    "district": "Puducherry",
+    "cities_towns_taluks": [
+      "Puducherry", "Oulgaret", "Ariyankuppam", "Nettapakkam",
+      "Bahour", "Mannadipet", "Villiyanur", "Thirubuvanai",
+      "Mudaliarpet", "Lawspet"
+    ]
+  },
+  {
+    "district_id": 40,
+    "district": "Karaikal",
+    "cities_towns_taluks": [
+      "Karaikal", "Thirunallar", "Neravy", "Kottucherry",
+      "Ambagarathur", "Nedungadu", "Tirumalairayanpattinam"
+    ]
+  },
+  {
+    "district_id": 41,
+    "district": "Mahe",
+    "cities_towns_taluks": [
+      "Mahe", "Palloor", "Chaliyam", "Pandakkal",
+      "Cherupuzha"
+    ]
+  },
+  {
+    "district_id": 42,
+    "district": "Yanam",
+    "cities_towns_taluks": [
+      "Yanam", "Coringa", "Tondangi"
+    ]
+  }
+]

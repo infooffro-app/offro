@@ -1,4 +1,3 @@
-// screens/app/SettingsScreen.js - Settings Page
 import React, { useState } from 'react';
 import {
   View,
@@ -10,15 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const AXIS_COLORS = {
-  primary: '#003DA5',
-  secondary: '#4A90E2',
-  lightBg: '#E8F1F8',
-  text: '#1A1A1A',
-  white: '#FFFFFF',
-  border: '#D0E0F0',
-};
+import { AXIS_COLORS } from '../../../constants/colors'
 
 export default function SettingsScreen({ navigation }) {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
